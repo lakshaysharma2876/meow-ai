@@ -116,7 +116,7 @@ export const AgentForm = ({
                             Name
                         </FormLabel> 
                         <FormControl>
-                            <Input {...field} placeholder="Baveet-Agent"/>
+                            <Input {...field} placeholder="Lakshay-Agent"/>
                         </FormControl>
                         <FormMessage/>
                     </FormItem>

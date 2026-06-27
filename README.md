@@ -74,7 +74,7 @@ Meow.AI is a production-ready SaaS platform that revolutionizes video meetings b
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/baveet256/End-to-End-AI-Platform
+git clone https://github.com/lakshaysharma2876/meow-ai
 cd talkai
 ```
 
@@ -173,7 +173,7 @@ After your call ends, access:
 ### Demo Limitations
 
 ⚠️ **This is a demo/trial SaaS project**  
-As an F1 student in the US, I cannot implement payment processing. Each user is limited to **3 meetings** to manage API costs. Meetings cannot be deleted or edited once created.
+I didn't implement payment processing for security reasons. Each user is limited to **3 meetings** to manage API costs. Meetings cannot be deleted or edited once created.
 
 ---
 
@@ -228,26 +228,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 👨‍💻 About the Developer
-
-**Baveet Singh Hora**  
-AI Engineer | Full-Stack Developer | Data Scientist | Machine Learning Engineer
-
-I'm passionate about building intelligent systems that solve real-world problems. This project showcases my expertise in:
-- Full-stack SaaS development
-- Real-time AI agent orchestration
-- Modern web architecture (Next.js, React, TypeScript)
-- Performance optimization and scalable design
-
-### 📬 Let's Connect
-
-- **Email:** [bhora@asu.edu](mailto:bhora@asu.edu)
-- **GitHub:** [github.com/baveet256](https://github.com/baveet256)
-- **LinkedIn:** [linkedin.com/in/baveet-singh-961303220](https://www.linkedin.com/in/baveet-singh-961303220/)
-
-**🎯 Open to full-time opportunities!** If you're looking for a developer who ships production-grade applications, let's talk.
-
----
 
 ## 🙏 Acknowledgments
 
@@ -261,7 +241,7 @@ I'm passionate about building intelligent systems that solve real-world problems
 
 <div align="center">
 
-**Built with ❤️ by Baveet Singh Hora**
+**Built with ❤️ by Lakshay Sharma**
 
 ⭐ Star this repo if you found it helpful!
 

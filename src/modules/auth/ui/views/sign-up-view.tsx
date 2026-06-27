@@ -195,7 +195,7 @@ useEffect(() => {
           <FormControl>
             <Input
               type="text"
-              placeholder="baveet"
+              placeholder="Lakshay"
               {...field}
               className="bg-zinc-900/70 border border-zinc-700 rounded-xl 
                          focus:ring-2 focus:ring-amber-400 text-white placeholder:text-gray-100"
@@ -216,7 +216,7 @@ useEffect(() => {
           <FormControl>
             <Input
               type="email"
-              placeholder="m@baveet.com"
+              placeholder="m@lakshay.com"
               {...field}
               className="bg-zinc-900/70 border border-zinc-700 rounded-xl 
                          focus:ring-2 focus:ring-amber-400 text-white placeholder:text-gray-100"
@@ -346,7 +346,7 @@ useEffect(() => {
                     </div>
                     
                     <div className="w-full bg-white/30 backdrop-blur-sm rounded-lg p-3 border border-white/40 space-y-2">
-                        <h2 className="font-bold text-base text-amber-900">👋 Baveet Singh Hora</h2>
+                        <h2 className="font-bold text-base text-amber-900">👋 Lakshay Sharma</h2>
                         <div className="h-5 flex items-center text-xs">
                             <span className="font-medium text-gray-800">I'm a </span>
                             <span className="font-bold text-amber-900 ml-1">
@@ -408,7 +408,7 @@ useEffect(() => {
 
                     <div className="w-full flex gap-2 justify-center pt-1">
                         <a 
-                            href="https://github.com/baveet256" 
+                            href="https://github.com/lakshaysharma2876/" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="bg-gray-800 hover:bg-gray-900 text-white p-2 rounded-lg transition-all hover:scale-110 shadow-lg"
@@ -418,7 +418,7 @@ useEffect(() => {
                             </svg>
                         </a>
                         <a 
-                            href="https://www.linkedin.com/in/baveet-singh-961303220/" 
+                            href="https://www.linkedin.com/in/lakshay2876/" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-all hover:scale-110 shadow-lg"

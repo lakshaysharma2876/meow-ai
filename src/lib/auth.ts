@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { Pool } from "pg";
 
 const database = new Pool({
-  connectionString: "postgresql://postgres:password@localhost:5432/database",
+  connectionString: process.env.DATABASE_URL,
 });
 
 export const auth = betterAuth({

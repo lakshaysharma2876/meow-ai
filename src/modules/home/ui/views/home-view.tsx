@@ -48,8 +48,8 @@ export const HomeView = () => {
         {/* Contact */}
         <p className="text-center text-gray-400 text-sm md:text-base">
           Reach out for feedback, suggestions, or anything else:{" "}
-          <a href="mailto:bhora@asu.edu" className="underline hover:text-purple-400 transition-colors">
-            bhora@asu.edu
+          <a href="mailto:lakshay2876@gmail.com" className="underline hover:text-purple-400 transition-colors">
+            lakshay2876@gmail.com
           </a>
         </p>
       </div>

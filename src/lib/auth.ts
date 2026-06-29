@@ -8,5 +8,5 @@ const database = new Pool({
 export const auth = betterAuth({
   database: database,
   //set for vercel
-  baseURL: "http://localhost:3000/",
+  baseURL: "https://meow-ai-lemon.vercel.app/",
 });

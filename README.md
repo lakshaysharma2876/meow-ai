@@ -120,10 +120,12 @@ INNGEST_SIGNING_KEY="your-inngest-signing-key"
 4. **Set up the database**
 ```bash
 # Generate Drizzle migrations
-npm run db:generate
+npx drizzle-kit generate --config=drizzle.config.ts
 
 # Run migrations
-npm run db:migrate
+npx drizzle-kit migrate
+
+npx drizzle-kit push
 
 # (Optional) Seed initial data
 npm run db:seed

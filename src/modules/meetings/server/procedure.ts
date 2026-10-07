@@ -292,13 +292,15 @@ export const meetingsRouter = createTRPCRouter({
         //await new Promise((resolve) => setTimeout(resolve,5000));
         //throw new TRPCError({code:"BAD_REQUEST"});
 
-        const totalPages = Math.ceil(total.count / pageSize)
+        const totalCount = Number(total?.count ?? 0);
+        const totalPages = Math.ceil(totalCount / pageSize);
         return {
-            items:data,
-            total : total.count,
-            totalPages : totalPages
+            items: data,
+            total: totalCount,
+            totalPages: totalPages
         };
     }),
+
 
 
 checkMeetingLimit: protectedProcedure

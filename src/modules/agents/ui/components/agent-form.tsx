@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 
 import { Form,FormControl,FormField,FormItem,FormLabel,FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -35,6 +36,7 @@ export const AgentForm = ({
         defaultValues: {
             name: initialValues?.name ?? "",
             instructions: initialValues?.instructions ?? "",
+            model: (initialValues as any)?.model ?? "auto",
         },
     });
 
@@ -88,6 +90,7 @@ export const AgentForm = ({
             form.reset({
                 name: initialValues.name,
                 instructions: initialValues.instructions,
+                model: (initialValues as any).model ?? "auto",
             });
         }
     }, [initialValues, form]);
@@ -134,8 +137,50 @@ export const AgentForm = ({
                     </FormItem>
                 )}>
                 </FormField>
-                <div>
-                    <Button disabled = {isPending} type = "submit"> {isEdit ? "Update": "Create"}</Button>
+                <FormField name = "model" control = {form.control} render = {({field}) => (
+                    <FormItem>
+                        <FormLabel>
+                            AI Model Engine
+                        </FormLabel> 
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                                <SelectTrigger className="w-full bg-background/50 border-amber-300/40 focus:border-orange-500">
+                                    <SelectValue placeholder="Select an AI model routing engine" />
+                                </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="border-amber-200/50 bg-popover/95 backdrop-blur-md">
+                                <SelectItem value="auto">
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-medium">Auto Routing</span>
+                                        <span className="text-xs text-muted-foreground">(Free: Gemini 2.0 / Llama 3.3 via OpenRouter)</span>
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="meta-llama/llama-3.3-70b-instruct:free">
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-medium">Llama 3.3 70B</span>
+                                        <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">(Free & Fast)</span>
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="google/gemini-2.0-flash-exp:free">
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-medium">Gemini 2.0 Flash</span>
+                                        <span className="text-xs text-amber-600 dark:text-amber-400 font-semibold">(Free & 1M Context)</span>
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="gpt-4o">
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-medium">OpenAI GPT-4o</span>
+                                        <span className="text-xs text-muted-foreground">(Direct OpenAI Fallback)</span>
+                                    </div>
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <FormMessage/>
+                    </FormItem>
+                )}>
+                </FormField>
+                <div className="flex items-center gap-x-2 pt-2">
+                    <Button disabled = {isPending} type = "submit" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium shadow-sm"> {isEdit ? "Update Agent": "Create Agent"}</Button>
                     
                     {onCancel && (
                         <Button variant="ghost" disabled={isPending} type="button" onClick={() => onCancel()}>Cancel</Button>

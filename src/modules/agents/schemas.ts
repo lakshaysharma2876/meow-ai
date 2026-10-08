@@ -3,6 +3,7 @@ import {z} from "zod";
 export const agentsInsertSchema = z.object({
     name: z.string().min(1, {message:"Name is required"}),
     instructions : z.string().min(1, {message:"Instructions is required to create your custom agent"}),
+    model: z.string(),
 });
 
 export const agentsUpdateSchema = agentsInsertSchema.extend({

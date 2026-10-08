@@ -67,9 +67,9 @@ export const session = pgTable("session", {
     name: text("name").notNull(),
     userId: text("user_id").notNull().references(()=>user.id, {onDelete : "cascade"}),
     instructions: text("instructions").notNull(),
+    model: text("model").notNull().default("auto"),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
-
   });
 
   export const meetingStatus = pgEnum("meeting_status",[

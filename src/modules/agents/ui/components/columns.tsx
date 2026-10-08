@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { AgentGetMany } from "../../types"
 import { GeneratedAvatar } from "@/components/generated-avatar"
-import { CornerDownRightIcon, CornerRightDown, CornerRightDownIcon, VideoIcon } from "lucide-react"
+import { CornerDownRightIcon, SparklesIcon, VideoIcon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 // This type is used to define the shape of our data.
@@ -30,7 +30,27 @@ export const columns: ColumnDef<AgentGetMany[number]>[] = [
 
         </div>
     )
-  },{
+  },
+  {
+    accessorKey: "model",
+    header: "Engine",
+    cell: ({row}) => {
+      const model = (row.original as any).model || "auto";
+      const isAuto = model === "auto";
+      const isGemini = model.includes("gemini");
+      const isLlama = model.includes("llama");
+
+      return (
+        <Badge variant="outline" className="flex items-center gap-x-1.5 border-amber-300/40 bg-amber-50/60 dark:bg-amber-950/20 text-amber-900 dark:text-amber-200">
+          <SparklesIcon className="size-3 text-amber-500" />
+          <span className="text-xs font-medium">
+            {isAuto ? "Auto (Free)" : isGemini ? "Gemini 2.0" : isLlama ? "Llama 3.3" : "GPT-4o"}
+          </span>
+        </Badge>
+      );
+    }
+  },
+  {
     accessorKey:"meetingCount",
     header:"Meetings",
     cell : ({row}) =>(

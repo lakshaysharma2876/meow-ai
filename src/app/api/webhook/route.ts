@@ -160,9 +160,9 @@ export async function POST(req:NextRequest){
 
         return NextResponse.json({success: true}); // ← Added return
 
-    }else if (eventType === "call.session_ended"){
+    }else if (eventType === "call.session_ended" || eventType === "call.ended"){
         const event = payload as CallEndedEvent;
-        const meetingId = event.call.custom?.meetingId;
+        const meetingId = event.call?.custom?.meetingId ?? (event as any).call_cid?.split(":")[1];
 
         if(!meetingId){
             return NextResponse.json({
@@ -182,21 +182,19 @@ export async function POST(req:NextRequest){
             .where(and (eq(meetings.id,meetingId),eq(meetings.status,"active"
             )) );
 
-        return NextResponse.json({success: true}); // ← Added return
+        return NextResponse.json({success: true});
 
     }else if(eventType === "call.transcription_ready"){
         const event = payload as CallTranscriptionReadyEvent;
         const meetingId = event.call_cid.split(":")[1];
 
         const [updatedMeeting] = await db
-        .update(meetings)
+            .update(meetings)
             .set({
                 transcriptUrl: event.call_transcription.url,
-                
             })
             .where(eq(meetings.id,meetingId))
             .returning();
-
 
         if (!updatedMeeting){
             return NextResponse.json({
@@ -207,16 +205,23 @@ export async function POST(req:NextRequest){
             }
         );
         }
-         // call inngest bg job to summarize transcript
-         await inngest.send({
-            name:"meetings/processing",
-            data:{
-                meetingId:updatedMeeting.id,
-                transcriptUrl: updatedMeeting.transcriptUrl,
-            }
-         })
 
-        return NextResponse.json({success: true}); // ← Added return
+        // Call inngest bg job to summarize transcript
+        try {
+            console.log(`📤 Sending meetings/processing to Inngest for meeting ${updatedMeeting.id}`);
+            await inngest.send({
+                name:"meetings/processing",
+                data:{
+                    meetingId:updatedMeeting.id,
+                    transcriptUrl: updatedMeeting.transcriptUrl,
+                }
+            });
+            console.log(`✅ Inngest event sent successfully for meeting ${updatedMeeting.id}`);
+        } catch (inngestErr) {
+            console.error("❌ Failed to send event to Inngest:", inngestErr);
+        }
+
+        return NextResponse.json({success: true});
 
     }else if(eventType === "call.recording_ready"){
         const event = payload as CallRecordingReadyEvent ;
@@ -229,7 +234,7 @@ export async function POST(req:NextRequest){
             })
             .where(eq(meetings.id,meetingId));
 
-        return NextResponse.json({success: true}); // ← Added return
+        return NextResponse.json({success: true});
         
     }else if(eventType === "message.new"){
         const event = payload as MessageNewEvent;
